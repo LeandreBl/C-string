@@ -13,7 +13,6 @@ struct lblstr_s {
 	char *i;
 	size_t len;
 	size_t rsize;
-
 	int (* append)(lblstr *self, const char *str);
 	int (* concat)(lblstr *self, const lblstr *add);
 	void (* destroy)(lblstr *self);
