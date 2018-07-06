@@ -13,59 +13,59 @@
 
 #include "lblstr.h"
 
-int _resize(lblstr *self, size_t new_size)
+int lstr_resize(lstr_t *lstr, size_t new_size)
 {
-	if (new_size != self->rsize) {
-		if (new_size < self->rsize) {
-			self->i[new_size++] = 0;
-			self->len = strlen(self->i);
+	if (new_size != lstr->rsize) {
+		if (new_size < lstr->rsize) {
+			lstr->i[new_size++] = 0;
+			lstr->len = strlen(lstr->i);
 		}
-		self->i = realloc(self->i, new_size);
-		if (self->i == NULL)
+		lstr->i = realloc(lstr->i, new_size);
+		if (lstr->i == NULL)
 			return (-1);
-		self->rsize = new_size;
+		lstr->rsize = new_size;
 	}
 	return (0);
 }
 
-int _append(lblstr *self, const char *str)
+int lstr_append(lstr_t *lstr, const char *str)
 {
 	size_t len = strlen(str);
 
-	if (self->resize(self, self->len + len + 1) == -1)
+	if (lstr_resize(lstr, lstr->len + len + 1) == -1)
 		return (-1);
-	strcpy(self->i + self->len, str);
-	self->len += len;
+	strcpy(lstr->i + lstr->len, str);
+	lstr->len += len;
 	return (0);
 }
 
-int _concat(lblstr *self, const lblstr *add)
+int lstr_concat(lstr_t *lstr, const lstr_t *add)
 {
-	if (self->resize(self, self->len + add->len + 1) == -1)
+	if (lstr_resize(lstr, lstr->len + add->len + 1) == -1)
 		return (-1);
-	strcpy(self->i + self->len, add->i);
-	self->len += add->len;
+	strcpy(lstr->i + lstr->len, add->i);
+	lstr->len += add->len;
 	return (0);
 }
 
-void _destroy(lblstr *self)
+void lstr_destroy(lstr_t *lstr)
 {
-	free(self->i);
+	free(lstr->i);
 }
 
-int _set(lblstr *self, const char *src)
+int lstr_set(lstr_t *lstr, const char *src)
 {
 	size_t len = strlen(src);
 
-	free(self->i);
-	self->i = malloc(len + 1);
-	if (self->i == NULL)
+	free(lstr->i);
+	lstr->i = malloc(len + 1);
+	if (lstr->i == NULL)
 		return (-1);
-	strcpy(self->i, src);
+	strcpy(lstr->i, src);
 	return (0);
 }
 
-int _format(lblstr *self, const char *format, ...)
+int lstr_format(lstr_t *lstr, const char *format, ...)
 {
 	va_list va;
 	int len;
@@ -75,37 +75,30 @@ int _format(lblstr *self, const char *format, ...)
 	len = vasprintf(&new, format, va);
 	if (len == -1)
 		return (-1);
-	free(self->i);
-	self->i = new;
-	self->len = (size_t)len;
-	self->rsize = (size_t)len;
+	free(lstr->i);
+	lstr->i = new;
+	lstr->len = (size_t)len;
+	lstr->rsize = (size_t)len;
 	va_end(va);
 	return (len);
 }
 
-int _addch(lblstr *self, char c)
+int lstr_addch(lstr_t *lstr, char c)
 {
-	if (self->resize(self, self->len + 1) == -1)
+	if (lstr_resize(lstr, lstr->len + 1) == -1)
 		return (-1);
-	self->i[self->len] = c;
-	++self->len;
+	lstr->i[lstr->len] = c;
+	++lstr->len;
 	return (0);
 }
 
-int lblstr_create(lblstr *self, const char *str)
+int lstr_create(lstr_t *lstr, const char *str)
 {
-	self->len = strlen(str);
-	self->i = malloc(self->len + 1);
-	if (self->i == NULL)
+	lstr->len = strlen(str);
+	lstr->i = malloc(lstr->len + 1);
+	if (lstr->i == NULL)
 		return (-1);
-	strcpy(self->i, str);
-	self->rsize = self->len + 1;
-	self->append = _append;
-	self->concat = _concat;
-	self->destroy = _destroy;
-	self->set = _set;
-	self->format = _format;
-	self->resize = _resize;
-	self->addch = _addch;
+	strcpy(lstr->i, str);
+	lstr->rsize = lstr->len + 1;
 	return (0);
 }
