@@ -331,3 +331,24 @@ Test(lstr_insert, various_tests)
 	cr_assert(lstr_insert(&str, 0, "") == -1);
 	lstr_destroy(&str);
 }
+
+Test(lstr_erase, various_tests)
+{
+	lstr_t str;
+
+	lstr_create(&str, "Je ne suis pas le plus beau.");
+	lstr_erase(&str, 3, 3);
+	cr_assert(str.len == 25);
+	cr_assert(str.rsize > 25);
+	cr_assert(strcmp(str.i, "Je suis pas le plus beau.") == 0);
+
+	lstr_erase(&str, 8, 4);
+	cr_assert(str.len == 21);
+	cr_assert(str.rsize > 21);
+	cr_assert(strcmp(str.i, "Je suis le plus beau.") == 0);
+
+	lstr_erase(&str, str.len - 1, 1);
+	cr_assert(str.len == 20);
+	cr_assert(str.rsize > 20);
+	cr_assert(strcmp(str.i, "Je suis le plus beau") == 0);
+}
