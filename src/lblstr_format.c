@@ -25,7 +25,7 @@ int lstr_format(lstr_t *lstr, const char *format, ...)
 	free(lstr->i);
 	lstr->i = new;
 	lstr->len = (size_t)len;
-	lstr->rsize = (size_t)len;
+	lstr->rsize = (size_t)len + 1;
 	va_end(va);
 	return (len);
 }

@@ -10,7 +10,7 @@
 
 #include "lblstr.h"
 
-int lstr_dup(lstr_t *src, lstr_t *empty)
+int lstr_dup(const lstr_t *src, lstr_t *empty)
 {
 	empty->i = malloc(src->len + 1);
 	if (empty->i == NULL)

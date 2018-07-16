@@ -22,9 +22,13 @@ SRCS		+= src/lblstr_replace.c
 SRCS		+= src/lblstr_resize.c
 SRCS		+= src/lblstr_set.c
 SRCS		+= src/lblstr_shift.c
+SRCS		+= src/lblstr_shrink_to_fit.c
 
+TESTS_SRCS := $(SRCS)
+TESTS_SRCS += tests/lblstr_tests.c
 
 OBJS		= $(SRCS:.c=.o)
+TESTS_OBJS = $(TESTS_SRCS:.c=.o)
 
 RM		= rm -f
 
@@ -36,18 +40,23 @@ GREEN		= '\033[0;32m'
 NO_COLOR	= '\033[0m'
 
 %.o : %.c
-	@$ $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@echo "$(CC) $(CFLAGS) $(CPPFLAGS) $< -o $@ ["$(GREEN)"OK"$(NO_COLOR)"]"
+	@$ $(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(CC) $(CFLAGS) -c $< -o $@ ["$(GREEN)"OK"$(NO_COLOR)"]"
 .SUFFIXES: .o .c
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$ $(CC) $(LDFLAGS) $(OBJS) -o $@
-	@echo "$(CC) $(OBJS) -o $@ \
+	@echo "$(CC) $(LDFLAGS) $(OBJS) -o $@ \
 	["$(GREEN)"LINKING OK"$(NO_COLOR)"]"
 
-tests_run:
+tests_run: $(TESTS_OBJS)
+	@$ $(CC) -lcriterion $(TESTS_OBJS) -o $@
+	@echo "$(CC) -lcriterion $(TESTS_OBJS) -o $@ \
+	["$(GREEN)"LINKING OK"$(NO_COLOR)"]"
+	./$@
+	@rm $@
 
 debug: CFLAGS += -g3
 debug: re
