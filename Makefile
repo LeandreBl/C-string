@@ -56,7 +56,8 @@ tests_run: $(TESTS_OBJS)
 	@echo "$(CC) -lcriterion $(TESTS_OBJS) -o $@ \
 	["$(GREEN)"LINKING OK"$(NO_COLOR)"]"
 	./$@
-	@rm $@
+	@$(RM) $@
+	@$(RM) $(TESTS_OBJS)
 
 debug: CFLAGS += -g3
 debug: re
