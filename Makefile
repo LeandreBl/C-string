@@ -5,7 +5,7 @@
 ## makefile
 ##
 
-NAME		= lblstr.so
+NAME		= liblblstr.so
 
 CC		= gcc
 
@@ -23,6 +23,8 @@ SRCS		+= src/lblstr_resize.c
 SRCS		+= src/lblstr_set.c
 SRCS		+= src/lblstr_shift.c
 SRCS		+= src/lblstr_shrink_to_fit.c
+SRCS		+= src/lblstr_clear.c
+SRCS		+= src/lblstr_insert.c
 
 TESTS_SRCS := $(SRCS)
 TESTS_SRCS += tests/lblstr_tests.c

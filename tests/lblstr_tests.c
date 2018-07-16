@@ -300,3 +300,34 @@ Test(lstr_shrink_to_fit, various_tests)
 	cr_assert(strcmp(str.i, "Im ba") == 0);
 	lstr_destroy(&str);
 }
+
+Test(lstr_clear, simple_test)
+{
+	lstr_t str;
+
+	lstr_create(&str, "zrotkeortkertkerotk");
+	lstr_clear(&str);
+	cr_assert(strlen(str.i) == 0);
+	cr_assert(str.len == 0);
+	lstr_destroy(&str);
+}
+
+Test(lstr_insert, various_tests)
+{
+	lstr_t str;
+
+	lstr_create(&str, "Je ne suis pas un");
+	cr_assert(lstr_insert(&str, str.len, " heros") == 0);
+	cr_assert(str.len == 23);
+	cr_assert(str.rsize > 23);
+	cr_assert(strcmp(str.i, "Je ne suis pas un heros") == 0);
+
+	cr_assert(lstr_insert(&str, 0, "Oui, ") == 0);
+	cr_assert(str.len == 28);
+	cr_assert(str.rsize > 28);
+	cr_assert(strcmp(str.i, "Oui, Je ne suis pas un heros") == 0);
+
+	cr_assert(lstr_insert(&str, 50000, "toto") == -1);
+	cr_assert(lstr_insert(&str, 0, "") == -1);
+	lstr_destroy(&str);
+}
