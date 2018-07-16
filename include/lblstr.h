@@ -33,5 +33,6 @@ int lstr_shrink_to_fit(lstr_t *lstr);
 int lstr_insert(lstr_t *lstr, size_t pos, const char *str);
 void lstr_clear(lstr_t *lstr);
 void lstr_erase(lstr_t *lstr, size_t pos, size_t len);
+void lstr_swap(lstr_t *l1, lstr_t *l2);
 
 #endif /* !_LBLSTR_H */

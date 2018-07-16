@@ -26,6 +26,7 @@ SRCS		+= src/lblstr_shrink_to_fit.c
 SRCS		+= src/lblstr_clear.c
 SRCS		+= src/lblstr_insert.c
 SRCS		+= src/lblstr_erase.c
+SRCS		+= src/lblstr_swap.c
 
 TESTS_SRCS := $(SRCS)
 TESTS_SRCS += tests/lblstr_tests.c

@@ -352,3 +352,22 @@ Test(lstr_erase, various_tests)
 	cr_assert(str.rsize > 20);
 	cr_assert(strcmp(str.i, "Je suis le plus beau") == 0);
 }
+
+Test(lstr_swap, various_tests)
+{
+	lstr_t l1;
+	lstr_t l2;
+
+	lstr_create(&l1, "yes");
+	lstr_create(&l2, "foobar");
+
+	lstr_swap(&l1, &l2);
+	cr_assert(strcmp(l1.i, "foobar") == 0);
+	cr_assert(strcmp(l2.i, "yes") == 0);
+	cr_assert(l1.len == 6);
+	cr_assert(l2.len == 3);
+	cr_assert(l1.rsize > 6);
+	cr_assert(l2.rsize > 3);
+	lstr_destroy(&l1);
+	lstr_destroy(&l2);
+}
