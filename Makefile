@@ -1,0 +1,69 @@
+##
+## EPITECH PROJECT, 2017
+##
+## File description:
+## makefile
+##
+
+NAME		= lblstr.so
+
+CC		= gcc
+
+LIBS		=
+
+SRCS		= src/lblstr.c
+SRCS		+= src/lblstr_addch.c
+SRCS		+= src/lblstr_append.c
+SRCS		+= src/lblstr_concat.c
+SRCS		+= src/lblstr_dup.c
+SRCS		+= src/lblstr_format.c
+SRCS		+= src/lblstr_remove.c
+SRCS		+= src/lblstr_replace.c
+SRCS		+= src/lblstr_resize.c
+SRCS		+= src/lblstr_set.c
+SRCS		+= src/lblstr_shift.c
+
+
+OBJS		= $(SRCS:.c=.o)
+
+RM		= rm -f
+
+CFLAGS		= -Werror -Wall -Wextra -fPIC
+CFLAGS		+= -I ./include
+LDFLAGS		= -shared
+
+GREEN		= '\033[0;32m'
+NO_COLOR	= '\033[0m'
+
+%.o : %.c
+	@$ $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@echo "$(CC) $(CFLAGS) $(CPPFLAGS) $< -o $@ ["$(GREEN)"OK"$(NO_COLOR)"]"
+.SUFFIXES: .o .c
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	@$ $(CC) $(LDFLAGS) $(OBJS) -o $@
+	@echo "$(CC) $(OBJS) -o $@ \
+	["$(GREEN)"LINKING OK"$(NO_COLOR)"]"
+
+tests_run:
+
+debug: CFLAGS += -g3
+debug: re
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+install: re
+	@cp $(NAME) /usr/lib/$(NAME) 2> /dev/null || \
+	printf "\033[1m\033[31mError : try sudo make install\033[0m\n" && \
+	cp include/lblstr.h /usr/include/lblstr.h 2> /dev/null && \
+	printf "\033[1m\033[32mLibrary successfull installed !\033[0m\n"
+
+.PHONY: all clean fclean re tests_run debug install

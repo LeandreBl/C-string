@@ -5,7 +5,10 @@
 ** header
 */
 
-#include <stddef.h>
+#ifndef LBLSTR_H_
+# define LBLSTR_H_
+
+# include <stddef.h>
 
 typedef struct lblstr_s {
 	char *i;
@@ -21,3 +24,9 @@ int lstr_set(lstr_t *lstr, const char *src);
 int lstr_format(lstr_t *lstr, const char *format, ...);
 int lstr_resize(lstr_t *lstr, size_t new_size);
 int lstr_addch(lstr_t *lstr, char c);
+int lstr_dup(lstr_t *lstr, lstr_t *dest);
+void lstr_shift(lstr_t *lstr, int offset);
+void lstr_remove(lstr_t *lstr, const char *pattern);
+int lstr_replace(lstr_t *lstr, const char *replace, const char *by);
+
+#endif /* !LBLSTR_H_ */
