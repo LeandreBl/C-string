@@ -12,10 +12,11 @@
 
 int lstr_set(lstr_t *lstr, const char *src)
 {
-	lstr->len = strlen(src);
-	free(lstr->i);
-	if (lstr_resize(lstr, lstr->len + 1) == -1)
+	size_t len = strlen(src);
+
+	if (lstr_resize(lstr, len + 1) == -1)
 		return (-1);
 	strcpy(lstr->i, src);
+	lstr->len = len;
 	return (0);
 }
