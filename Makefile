@@ -36,7 +36,7 @@ TESTS_OBJS = $(TESTS_SRCS:.c=.o)
 
 RM		= rm -f
 
-CFLAGS		= -Werror -Wall -Wextra -fPIC
+CFLAGS		= -Werror -Wall -Wextra -fPIC -pedantic
 CFLAGS		+= -I ./include
 LDFLAGS		= -shared
 
