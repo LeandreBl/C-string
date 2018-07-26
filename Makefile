@@ -9,8 +9,6 @@ NAME		= liblblstr.so
 
 CC		= gcc
 
-LIBS		=
-
 SRCS		= src/lblstr.c
 SRCS		+= src/lblstr_addch.c
 SRCS		+= src/lblstr_append.c
@@ -28,11 +26,11 @@ SRCS		+= src/lblstr_insert.c
 SRCS		+= src/lblstr_erase.c
 SRCS		+= src/lblstr_swap.c
 
-TESTS_SRCS := $(SRCS)
-TESTS_SRCS += tests/lblstr_tests.c
+TESTS_SRCS	:= $(SRCS)
+TESTS_SRCS	+= tests/lblstr_tests.c
 
 OBJS		= $(SRCS:.c=.o)
-TESTS_OBJS = $(TESTS_SRCS:.c=.o)
+TESTS_OBJS	= $(TESTS_SRCS:.c=.o)
 
 RM		= rm -f
 
