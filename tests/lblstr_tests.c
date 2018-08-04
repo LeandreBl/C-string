@@ -7,7 +7,7 @@
 
 #include <criterion/criterion.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 Test(lstr_create, various_tests)
 {

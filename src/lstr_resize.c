@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int lstr_resize(lstr_t *lstr, size_t new_size)
 {

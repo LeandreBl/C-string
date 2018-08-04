@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 void lstr_swap(lstr_t *l1, lstr_t *l2)
 {

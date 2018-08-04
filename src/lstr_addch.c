@@ -5,7 +5,7 @@
 ** lstr_addch
 */
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int lstr_addch(lstr_t *lstr, char c)
 {

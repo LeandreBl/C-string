@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 void lstr_remove(lstr_t *lstr, const char *pattern)
 {

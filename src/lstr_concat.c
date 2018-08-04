@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int lstr_concat(lstr_t *lstr, const lstr_t *add)
 {

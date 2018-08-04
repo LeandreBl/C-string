@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 void lstr_shift(lstr_t *lstr, int offset)
 {

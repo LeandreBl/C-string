@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int lstr_shrink_to_fit(lstr_t *lstr)
 {

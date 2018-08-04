@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int need_resize(lstr_t *lstr, size_t pos, const char *str, size_t len)
 {

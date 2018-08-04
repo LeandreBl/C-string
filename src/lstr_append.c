@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int lstr_append(lstr_t *lstr, const char *str)
 {

@@ -5,7 +5,7 @@
 ** lstr_clear
 */
 
-#include "lblstr.h"
+#include "lstr.h"
 
 void lstr_clear(lstr_t *lstr)
 {

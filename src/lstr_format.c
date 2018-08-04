@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int lstr_format(lstr_t *lstr, const char *format, ...)
 {

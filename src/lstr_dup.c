@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 int lstr_dup(const lstr_t *src, lstr_t *empty)
 {

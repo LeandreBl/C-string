@@ -7,7 +7,7 @@
 
 #include <string.h>
 
-#include "lblstr.h"
+#include "lstr.h"
 
 static size_t times_in(const char *in, const char *pattern)
 {

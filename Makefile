@@ -5,26 +5,26 @@
 ## makefile
 ##
 
-NAME		= liblblstr.so
+NAME		= liblstr.so
 
 CC		= gcc
 
-SRCS		= src/lblstr.c
-SRCS		+= src/lblstr_addch.c
-SRCS		+= src/lblstr_append.c
-SRCS		+= src/lblstr_concat.c
-SRCS		+= src/lblstr_dup.c
-SRCS		+= src/lblstr_format.c
-SRCS		+= src/lblstr_remove.c
-SRCS		+= src/lblstr_replace.c
-SRCS		+= src/lblstr_resize.c
-SRCS		+= src/lblstr_set.c
-SRCS		+= src/lblstr_shift.c
-SRCS		+= src/lblstr_shrink_to_fit.c
-SRCS		+= src/lblstr_clear.c
-SRCS		+= src/lblstr_insert.c
-SRCS		+= src/lblstr_erase.c
-SRCS		+= src/lblstr_swap.c
+SRCS		= src/lstr.c
+SRCS		+= src/lstr_addch.c
+SRCS		+= src/lstr_append.c
+SRCS		+= src/lstr_concat.c
+SRCS		+= src/lstr_dup.c
+SRCS		+= src/lstr_format.c
+SRCS		+= src/lstr_remove.c
+SRCS		+= src/lstr_replace.c
+SRCS		+= src/lstr_resize.c
+SRCS		+= src/lstr_set.c
+SRCS		+= src/lstr_shift.c
+SRCS		+= src/lstr_shrink_to_fit.c
+SRCS		+= src/lstr_clear.c
+SRCS		+= src/lstr_insert.c
+SRCS		+= src/lstr_erase.c
+SRCS		+= src/lstr_swap.c
 
 TESTS_SRCS	:= $(SRCS)
 TESTS_SRCS	+= tests/lblstr_tests.c
@@ -75,7 +75,7 @@ re: fclean all
 install: re
 	@cp $(NAME) /usr/lib/$(NAME) 2> /dev/null || \
 	printf "\033[1m\033[31mError : try sudo make install\033[0m\n" && \
-	cp include/lblstr.h /usr/include/lblstr.h 2> /dev/null && \
+	cp include/*.h /usr/include/ 2> /dev/null && \
 	printf "\033[1m\033[32mLibrary successfull installed !\033[0m\n"
 
 .PHONY: all clean fclean re tests_run debug install
