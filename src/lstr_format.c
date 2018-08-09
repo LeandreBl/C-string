@@ -22,7 +22,6 @@ int lstr_format(lstr_t *lstr, const char *format, ...)
 	len = vasprintf(&new, format, va);
 	if (len == -1)
 		return (-1);
-	free(lstr->i);
 	lstr->i = new;
 	lstr->len = (size_t)len;
 	lstr->rsize = (size_t)len + 1;
