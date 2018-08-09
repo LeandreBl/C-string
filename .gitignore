@@ -1,3 +1,5 @@
+.#*
+.vscode/*
 *.so
 src/*.o
 tests/*.o
