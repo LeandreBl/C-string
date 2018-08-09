@@ -25,6 +25,8 @@ SRCS		+= src/lstr_clear.c
 SRCS		+= src/lstr_insert.c
 SRCS		+= src/lstr_erase.c
 SRCS		+= src/lstr_swap.c
+SRCS		+= src/lstr_fd.c
+SRCS		+= src/lstr_file.c
 
 TESTS_SRCS	:= $(SRCS)
 TESTS_SRCS	+= tests/lblstr_tests.c

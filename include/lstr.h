@@ -9,6 +9,7 @@
 # define _LBLSTR_H
 
 # include <stddef.h>
+# include <sys/types.h>
 
 typedef struct lblstr_s {
 	char *i;
@@ -34,5 +35,7 @@ int lstr_insert(lstr_t *lstr, size_t pos, const char *str);
 void lstr_clear(lstr_t *lstr);
 void lstr_erase(lstr_t *lstr, size_t pos, size_t len);
 void lstr_swap(lstr_t *l1, lstr_t *l2);
+ssize_t lstr_fd(lstr_t *lstr, int fd, ssize_t count);
+ssize_t lstr_file(lstr_t *lstr, const char *pathname, ssize_t count);
 
 #endif /* !_LBLSTR_H */
