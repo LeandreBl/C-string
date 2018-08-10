@@ -6,6 +6,8 @@
 */
 
 #include <criterion/criterion.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #include "lstr.h"
 
@@ -370,4 +372,41 @@ Test(lstr_swap, various_tests)
 	cr_assert(l2.rsize > 3);
 	lstr_destroy(&l1);
 	lstr_destroy(&l2);
+}
+
+Test(lstr_fd, various_tests)
+{
+	char test[] = "Hi everyone, this is a simple test";
+	lstr_t str;
+	int fd = open("test_fd", O_RDWR | O_CREAT | O_TRUNC, 0666);
+
+	cr_assert(fd != -1);
+	write(fd, test, sizeof(test));
+	lseek(fd, 0, SEEK_SET);
+	cr_assert(lstr_fd(&str, fd, 10) == 10);
+	cr_assert(strncmp(str.i, test, 10) == 0);
+	cr_assert(lstr_fd(&str, fd, 4) == 4);
+	cr_assert(strncmp(str.i, test + 10, 4) == 0);
+	cr_assert(lstr_fd(&str, fd, -1) == sizeof(test) - 14);
+	cr_assert(strncmp(str.i, test + 14, sizeof(test) - 14) == 0);
+	close(fd);
+	unlink("test_fd");
+}
+
+Test(lstr_file, various_tests)
+{
+	char test[] = "I don't know what to write in it anymore";
+	lstr_t str;
+	int fd = open("test_file", O_RDWR | O_CREAT | O_TRUNC, 0666);
+
+	cr_assert(fd != -1);
+	write(fd, test, sizeof(test));
+	close(fd);
+	cr_assert(lstr_file(&str, "test_file", 10) == 10);
+	cr_assert(strncmp(str.i, test, 10) == 0);
+	cr_assert(lstr_file(&str, "test_file", 4) == 4);
+	cr_assert(strncmp(str.i, test, 4) == 0);
+	cr_assert(lstr_file(&str, "test_file", -1) == sizeof(test));
+	cr_assert(strncmp(str.i, test, sizeof(test)) == 0);
+	unlink("test_file");
 }
