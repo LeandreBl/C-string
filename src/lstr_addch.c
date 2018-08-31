@@ -13,5 +13,6 @@ int lstr_addch(lstr_t *lstr, char c)
 		return (-1);
 	lstr->i[lstr->len] = c;
 	++lstr->len;
+	lstr->i[lstr->len] = '\0';
 	return (0);
 }
