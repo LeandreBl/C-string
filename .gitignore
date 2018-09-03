@@ -1,7 +1,0 @@
-.#*
-.vscode/*
-*.so
-src/*.o
-tests/*.o
-tests_run
-.gitignore
