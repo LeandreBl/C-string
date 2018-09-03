@@ -2,12 +2,12 @@
 
 #include "lstr.h"
 
-int lstr_lock(lstr_t *str)
+int lstr_lock(lstr_t *lstr)
 {
-	return (pthread_mutex_lock(str->lock));
+	return (pthread_mutex_lock(lstr->lock));
 }
 
-int lstr_unlock(lstr_t *str)
+int lstr_unlock(lstr_t *lstr)
 {
-	return (pthread_mutex_unlock(str->lock));
+	return (pthread_mutex_unlock(lstr->lock));
 }

@@ -39,4 +39,7 @@ void lstr_swap(lstr_t *l1, lstr_t *l2);
 ssize_t lstr_fd(lstr_t *lstr, int fd, ssize_t count);
 ssize_t lstr_file(lstr_t *lstr, const char *pathname, ssize_t count);
 
+int lstr_lock(lstr_t *lstr);
+int lstr_unlock(lstr_t *lstr);
+
 #endif /* !_LBLSTR_H */
