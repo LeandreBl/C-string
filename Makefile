@@ -10,6 +10,7 @@ NAME		= liblstr.so
 CC		= gcc
 
 SRCS		= src/lstr.c
+SRCS		+= src/lock.c
 SRCS		+= src/lstr_addch.c
 SRCS		+= src/lstr_append.c
 SRCS		+= src/lstr_concat.c

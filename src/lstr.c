@@ -7,6 +7,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 #include "lstr.h"
 
@@ -18,6 +19,7 @@ int lstr_create(lstr_t *lstr, const char *str)
 		return (-1);
 	strcpy(lstr->i, str);
 	lstr->rsize = lstr->len + 1;
+	lstr->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	return (0);
 }
 
