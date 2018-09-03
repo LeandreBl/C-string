@@ -4,10 +4,10 @@
 
 int lstr_lock(lstr_t *str)
 {
-	return (pthread_mutex_lock(&str->lock));
+	return (pthread_mutex_lock(str->lock));
 }
 
 int lstr_unlock(lstr_t *str)
 {
-	return (pthread_mutex_unlock(&str->lock));
+	return (pthread_mutex_unlock(str->lock));
 }

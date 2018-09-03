@@ -13,9 +13,9 @@
 
 typedef struct lblstr_s {
 	char *i;
+	pthread_mutex_t *lock;
 	size_t len;
 	size_t rsize;
-	pthread_mutex_t lock;
 } lstr_t;
 
 int lstr_create(lstr_t *lstr, const char *str);
