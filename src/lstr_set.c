@@ -16,7 +16,7 @@ int lstr_set(lstr_t *lstr, const char *src)
 
 	if (lstr_resize(lstr, len + 1) == -1)
 		return (-1);
-	strcpy(lstr->i, src);
+	strncpy(lstr->i, src, len + 1);
 	lstr->len = len;
 	return (0);
 }

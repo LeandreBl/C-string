@@ -19,7 +19,7 @@ int need_resize(lstr_t *lstr, size_t pos, const char *str, size_t len)
 		return (-1);
 	strncpy(new, lstr->i, pos);
 	strncpy(new + pos, str, len);
-	strcpy(new + pos + len, lstr->i + pos);
+	strncpy(new + pos + len, lstr->i + pos, lstr->len + 1 - pos);
 	free(lstr->i);
 	lstr->i = new;
 	lstr->rsize = lstr->len + len + 1;
