@@ -11,15 +11,21 @@
 
 #include "lstr.h"
 
-int lstr_dup(const lstr_t *src, lstr_t *empty)
+lstr_t *lstr_dup(const lstr_t *src)
 {
-	empty->i = malloc(src->len + 1);
-	empty->lock = malloc(sizeof(pthread_mutex_t));
-	if (empty->i == NULL || empty->lock == NULL)
-		return (-1);
-	strcpy(empty->i, src->i);
-	empty->len = src->len;
-	empty->rsize = src->len + 1;
-	*empty->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	return (0);
+	lstr_t *new = malloc(sizeof(*new));
+
+	if (new == NULL)
+		return (NULL);
+	new->i = malloc(src->len + 1);
+	new->lock = malloc(sizeof(pthread_mutex_t));
+	if (new->i == NULL || new->lock == NULL) {
+		lstr_destroy(new);
+		return (NULL);
+	}
+	strcpy(new->i, src->i);
+	new->len = src->len;
+	new->rsize = src->len + 1;
+	*new->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+	return (new);
 }
