@@ -37,15 +37,17 @@ ssize_t lstr_fd(lstr_t **lstr, int fd, ssize_t count)
 {
 	char buffer[4096];
 	ssize_t rd = 0;
+	size_t total = 0;
 	size_t size = 0;
 
 	if (null_tester(lstr, &size))
 		return (-1);
 	do {
-		rd = read(fd, buffer, left_to_read(count, size, sizeof(buffer)));
+		rd = read(fd, buffer, left_to_read(count, total, sizeof(buffer)));
 		if (rd == -1)
 			return (-1);
 		size += rd;
+		total += rd;
 		if (lstr_resize(*lstr, size + 1) == -1)
 			return (-1);
 		memcpy((*lstr)->i + (*lstr)->len, buffer, rd);
