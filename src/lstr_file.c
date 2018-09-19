@@ -12,12 +12,12 @@
 
 ssize_t lstr_file(lstr_t **lstr, const char *pathname, ssize_t count)
 {
-	lstr_t *new;
 	int fd = open(pathname, O_RDONLY);
+	ssize_t size;
 
 	if (fd == -1)
-		return (NULL);
-	new = lstr_fd(fd, count);
+		return (-1);
+	size = lstr_fd(lstr, fd, count);
 	close(fd);
-	return (new);
+	return (size);
 }

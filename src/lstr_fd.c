@@ -35,37 +35,17 @@ static int null_tester(lstr_t **lstr, size_t *size)
 
 ssize_t lstr_fd(lstr_t **lstr, int fd, ssize_t count)
 {
-	lstr_t *new;
 	char buffer[4096];
 	ssize_t rd = 0;
 	size_t size = 0;
 
-<<<<<<< HEAD
-	new = calloc(1, sizeof(*new));
-	if (new == NULL)
-		return (NULL);
-=======
 	if (null_tester(lstr, &size))
 		return (-1);
->>>>>>> Constructor functions now takes the address pointer of the pointer to fill with the string, lstr_format/fd/file now concat the wanted data, after the existing one if the address referenced pointer isn't NULL, if it's NULL, it creates it.
 	do {
 		rd = read(fd, buffer, left_to_read(count, size, sizeof(buffer)));
-		if (rd == -1) {
-			lstr_destroy(new);
-			return (NULL);
-		}
+		if (rd == -1)
+			return (-1);
 		size += rd;
-<<<<<<< HEAD
-		if (lstr_resize(new, size + 1) == -1) {
-			lstr_destroy(new);
-			return (NULL);
-		}
-		memcpy(new->i + new->len, buffer, rd);
-		new->len = size;
-	} while (rd > 0);
-	new->i[new->len] = 0;
-	return (new);
-=======
 		if (lstr_resize(*lstr, size + 1) == -1)
 			return (-1);
 		memcpy((*lstr)->i + (*lstr)->len, buffer, rd);
@@ -73,5 +53,4 @@ ssize_t lstr_fd(lstr_t **lstr, int fd, ssize_t count)
 	} while (rd > 0);
 	(*lstr)->i[(*lstr)->len] = 0;
 	return ((*lstr)->len);
->>>>>>> Constructor functions now takes the address pointer of the pointer to fill with the string, lstr_format/fd/file now concat the wanted data, after the existing one if the address referenced pointer isn't NULL, if it's NULL, it creates it.
 }

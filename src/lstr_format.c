@@ -41,10 +41,5 @@ int lstr_format(lstr_t **lstr, const char *format, ...)
 	len = vsnprintf((*lstr)->i + (*lstr)->len, (*lstr)->rsize - 1, format, va);
 	(*lstr)->len += len;
 	va_end(va);
-	str->lock = malloc(sizeof(pthread_mutex_t));
-	if (str->lock == NULL) {
-		lstr_destroy(str);
-		return (NULL);
-	}
-	return (str);
+	return (len);
 }
