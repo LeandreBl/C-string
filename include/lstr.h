@@ -8,7 +8,6 @@
 #ifndef _LBLSTR_H
 # define _LBLSTR_H
 
-# include <stddef.h>
 # include <sys/types.h>
 
 typedef struct lblstr_s {
