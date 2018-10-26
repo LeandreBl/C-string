@@ -12,15 +12,15 @@
 
 typedef struct lblstr_s {
 	char *i;
-	pthread_mutex_t *lock;
 	size_t len;
 	size_t rsize;
+	pthread_mutex_t lock;
 } lstr_t;
 
-int lstr_create(lstr_t **lstr_addr, const char *str);
-ssize_t lstr_fd(lstr_t **lstr_addr, int fd, ssize_t count);
-ssize_t lstr_file(lstr_t **lstr_addr, const char *pathname, ssize_t count);
-int lstr_format(lstr_t **lstr, const char *format, ...);
+int lstr_create(lstr_t *lstr_addr, const char *str);
+ssize_t lstr_fd(lstr_t *lstr_addr, int fd, ssize_t count);
+ssize_t lstr_file(lstr_t *lstr_addr, const char *pathname, ssize_t count);
+int lstr_format(lstr_t *lstr, const char *format, ...);
 
 void lstr_destroy(lstr_t *lstr);
 
@@ -29,7 +29,7 @@ int lstr_concat(lstr_t *lstr, const lstr_t *add);
 int lstr_set(lstr_t *lstr, const char *src);
 int lstr_resize(lstr_t *lstr, size_t new_size);
 int lstr_addch(lstr_t *lstr, char c);
-int lstr_dup(lstr_t **dest, const lstr_t *lstr);
+int lstr_dup(lstr_t *dest, const lstr_t *lstr);
 void lstr_shift(lstr_t *lstr, int offset);
 void lstr_remove(lstr_t *lstr, const char *pattern);
 int lstr_replace(lstr_t *lstr, const char *replace, const char *by);

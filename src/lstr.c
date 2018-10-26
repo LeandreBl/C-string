@@ -11,27 +11,22 @@
 
 #include "lstr.h"
 
-int lstr_create(lstr_t **lstr, const char *str)
+int lstr_create(lstr_t *lstr, const char *str)
 {
-	*lstr = malloc(sizeof(**lstr));
-	if (*lstr == NULL)
-		return (-1);
-	(*lstr)->len = strlen(str);
-	(*lstr)->i = malloc((*lstr)->len + 1);
-	(*lstr)->lock = malloc(sizeof(pthread_mutex_t));
-	if ((*lstr)->i == NULL || (*lstr)->lock == NULL) {
-		lstr_destroy(*lstr);
+	lstr->len = strlen(str);
+	lstr->i = malloc(lstr->len + 1);
+	if (lstr->i == NULL) {
+		lstr_destroy(lstr);
 		return (-1);
 	}
-	strncpy((*lstr)->i, str, (*lstr)->len + 1);
-	(*lstr)->rsize = (*lstr)->len + 1;
-	*(*lstr)->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+	strncpy(lstr->i, str, lstr->len + 1);
+	lstr->rsize = lstr->len + 1;
+	lstr->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	return (0);
 }
 
 void lstr_destroy(lstr_t *lstr)
 {
 	free(lstr->i);
-	free(lstr->lock);
-	free(lstr);
+	memset(lstr, 0, sizeof(*lstr));
 }

@@ -10,7 +10,7 @@
 
 #include "lstr.h"
 
-ssize_t lstr_file(lstr_t **lstr, const char *pathname, ssize_t count)
+ssize_t lstr_file(lstr_t *lstr, const char *pathname, ssize_t count)
 {
 	int fd = open(pathname, O_RDONLY);
 	ssize_t size;
