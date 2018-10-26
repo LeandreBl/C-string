@@ -376,7 +376,7 @@ Test(lstr_swap, various_tests)
 
 Test(lstr_fd, various_tests)
 {
-	char test[] = "Hi everyone, this is a simple test";
+	char test[] = "Hi everyone, this is a simple test, and i'm not going to try any further.";
 	lstr_t str = { 0 };
 
 	int fd = open("test_fd", O_RDWR | O_CREAT | O_TRUNC, 0666);
@@ -384,32 +384,32 @@ Test(lstr_fd, various_tests)
 	cr_assert(fd != -1);
 	write(fd, test, sizeof(test));
 	lseek(fd, 0, SEEK_SET);
-	cr_assert(lstr_fd(&str, fd, 10) == 10);
-	cr_assert(strncmp(str.i, test, 10) == 0);
+	cr_assert(lstr_fd(&str, fd, 50) == 50);
+	cr_assert(strncmp(str.i, test, 50) == 0);
 	lstr_destroy(&str);
 	cr_assert(lstr_fd(&str, fd, 4) == 4);
-	cr_assert(strncmp(str.i, test + 10, 4) == 0);
+	cr_assert(strncmp(str.i, test + 50, 4) == 0);
 	lstr_destroy(&str);
-	cr_assert(lstr_fd(&str, fd, -1) == sizeof(test) - 14);
-	cr_assert(strncmp(str.i, test + 14, sizeof(test) - 14) == 0);
+	cr_assert(lstr_fd(&str, fd, -1) == sizeof(test) - 54);
+	cr_assert(strncmp(str.i, test + 54, sizeof(test) - 54) == 0);
 	close(fd);
 	unlink("test_fd");
 }
 
 Test(lstr_file, various_tests)
 {
-	char test[] = "I don't know what to write in it anymore";
+	char test[] = "I don't know what to write in it anymore, you sure it's not a trick to pass tests ?";
 	lstr_t str = { 0 };
 	int fd = open("test_file", O_RDWR | O_CREAT | O_TRUNC, 0666);
 
 	cr_assert(fd != -1);
 	write(fd, test, sizeof(test));
 	close(fd);
-	cr_assert(lstr_file(&str, "test_file", 10) == 10);
-	cr_assert(strncmp(str.i, test, 10) == 0);
+	cr_assert(lstr_file(&str, "test_file", 50) == 50);
+	cr_assert(strncmp(str.i, test, 50) == 0);
 	lstr_destroy(&str);
-	cr_assert(lstr_file(&str, "test_file", 4) == 4);
-	cr_assert(strncmp(str.i, test, 4) == 0);
+	cr_assert(lstr_file(&str, "test_file", 74) == 74);
+	cr_assert(strncmp(str.i, test, 24) == 0);
 	lstr_destroy(&str);
 	cr_assert(lstr_file(&str, "test_file", -1) == sizeof(test));
 	cr_assert(strncmp(str.i, test, sizeof(test)) == 0);
