@@ -11,9 +11,9 @@
 
 int lstr_shrink_to_fit(lstr_t *lstr)
 {
-	lstr->i = realloc(lstr->i, lstr->len + 1);
-	if (lstr->i == NULL)
-		return (-1);
-	lstr->rsize = lstr->len + 1;
-	return (0);
+    lstr->i = realloc(lstr->i, lstr->len + 1);
+    if (lstr->i == NULL)
+        return (-1);
+    lstr->rsize = lstr->len + 1;
+    return (0);
 }

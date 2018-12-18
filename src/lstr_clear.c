@@ -9,6 +9,6 @@
 
 void lstr_clear(lstr_t *lstr)
 {
-	lstr->i[0] = 0;
-	lstr->len = 0;
+    lstr->i[0] = 0;
+    lstr->len = 0;
 }

@@ -13,20 +13,20 @@
 
 int lstr_create(lstr_t *lstr, const char *str)
 {
-	lstr->len = strlen(str);
-	lstr->i = malloc(lstr->len + 1);
-	if (lstr->i == NULL) {
-		lstr_destroy(lstr);
-		return (-1);
-	}
-	strncpy(lstr->i, str, lstr->len + 1);
-	lstr->rsize = lstr->len + 1;
-	lstr->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-	return (0);
+    lstr->len = strlen(str);
+    lstr->i = malloc(lstr->len + 1);
+    if (lstr->i == NULL) {
+        lstr_destroy(lstr);
+        return (-1);
+    }
+    strncpy(lstr->i, str, lstr->len + 1);
+    lstr->rsize = lstr->len + 1;
+    lstr->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
+    return (0);
 }
 
 void lstr_destroy(lstr_t *lstr)
 {
-	free(lstr->i);
-	memset(lstr, 0, sizeof(*lstr));
+    free(lstr->i);
+    memset(lstr, 0, sizeof(*lstr));
 }
