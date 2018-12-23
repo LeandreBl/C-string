@@ -95,21 +95,21 @@ Test(lstr_set, various_tests)
 	lstr_t str;
 
 	lstr_create(&str, "bar");
-	cr_assert(lstr_set(&str, "baobab") == 0);
+	cr_assert(lstr_set(&str, "baobab", 6) == 0);
 	cr_assert(str.len == 6);
 	cr_assert(str.rsize > 6);
 	cr_assert(strcmp(str.i, "baobab") == 0);
 	lstr_destroy(&str);
 
 	lstr_create(&str, "foo");
-	cr_assert(lstr_set(&str, "") == 0);
+	cr_assert(lstr_set(&str, "", 0) == 0);
 	cr_assert(str.len == 0);
 	cr_assert(str.rsize > 0);
 	cr_assert(strcmp(str.i, "") == 0);
 	lstr_destroy(&str);
 
 	lstr_create(&str, "useless");
-	cr_assert(lstr_set(&str, "krtnnlmvbklkapzerozeptotjkjtkerjtkerjtkerjt") == 0);
+	cr_assert(lstr_set(&str, "krtnnlmvbklkapzerozeptotjkjtkerjtkerjtkerjt", 43) == 0);
 	cr_assert(str.len == 43);
 	cr_assert(str.rsize > 43);
 	cr_assert(strcmp(str.i, "krtnnlmvbklkapzerozeptotjkjtkerjtkerjtkerjt") == 0);
@@ -223,7 +223,7 @@ Test(lstr_shift, various_tests)
 	cr_assert(str.rsize > 0);
 	cr_assert(strcmp(str.i, "") == 0);
 
-	lstr_set(&str, "toto");
+	lstr_set(&str, "toto", 4);
 	lstr_shift(&str, 100000);
 	cr_assert(str.len == 0);
 	cr_assert(str.rsize > 0);

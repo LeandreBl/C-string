@@ -19,7 +19,7 @@ int lstr_create(lstr_t *lstr, const char *str)
         lstr_destroy(lstr);
         return (-1);
     }
-    strncpy(lstr->i, str, lstr->len + 1);
+    memcpy(lstr->i, str, lstr->len + 1);
     lstr->rsize = lstr->len + 1;
     lstr->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
     return (0);

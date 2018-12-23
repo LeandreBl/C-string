@@ -48,7 +48,7 @@ int lstr_replace(lstr_t *lstr, const char *replace, const char *by)
     p = strstr(lstr->i, replace);
     while (p != NULL) {
         memmove(p + len2, p + len1, lstr->i + lstr->len - p - len1);
-        strncpy(p, by, len2);
+        memcpy(p, by, len2);
         lstr->len -= len1 - len2;
         lstr->i[lstr->len] = '\0';
         p = strstr(p + len2, replace);

@@ -17,9 +17,9 @@ int need_resize(lstr_t *lstr, size_t pos, const char *str, size_t len)
     new = malloc(lstr->len + len + 1);
     if (new == NULL)
         return (-1);
-    strncpy(new, lstr->i, pos);
-    strncpy(new + pos, str, len);
-    strncpy(new + pos + len, lstr->i + pos, lstr->len + 1 - pos);
+    memcpy(new, lstr->i, pos);
+    memcpy(new + pos, str, len);
+    memcpy(new + pos + len, lstr->i + pos, lstr->len + 1 - pos);
     free(lstr->i);
     lstr->i = new;
     lstr->rsize = lstr->len + len + 1;
@@ -37,7 +37,7 @@ int lstr_insert(lstr_t *lstr, size_t pos, const char *str)
         return (need_resize(lstr, pos, str, len));
     else {
         memmove(lstr->i + pos + len, lstr->i + pos, lstr->len - pos + 1);
-        strncpy(lstr->i + pos, str, len);
+        memcpy(lstr->i + pos, str, len);
         lstr->len += len;
     }
     return (0);

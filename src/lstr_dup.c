@@ -18,7 +18,7 @@ int lstr_dup(lstr_t *dest, const lstr_t *src)
         lstr_destroy(dest);
         return (-1);
     }
-    strncpy(dest->i, src->i, src->len + 1);
+    memcpy(dest->i, src->i, src->len + 1);
     dest->len = src->len;
     dest->rsize = src->len + 1;
     dest->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;

@@ -26,7 +26,7 @@ void lstr_destroy(lstr_t *lstr);
 
 int lstr_append(lstr_t *lstr, const char *str);
 int lstr_concat(lstr_t *lstr, const lstr_t *add);
-int lstr_set(lstr_t *lstr, const char *src);
+int lstr_set(lstr_t *lstr, const char *src, size_t len);
 int lstr_resize(lstr_t *lstr, size_t new_size);
 int lstr_addch(lstr_t *lstr, char c);
 int lstr_dup(lstr_t *dest, const lstr_t *lstr);
