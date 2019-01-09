@@ -11,8 +11,7 @@
 
 void lstr_shift(lstr_t *lstr, int offset)
 {
-  if ((offset < 0 && (size_t)-offset > lstr->len)
-      || (offset > 0 && (size_t)offset > lstr->len)) {
+  if ((offset < 0 && (size_t)-offset > lstr->len) || (offset > 0 && (size_t)offset > lstr->len)) {
     lstr->i[0] = '\0';
     lstr->len = 0;
   }
