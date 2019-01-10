@@ -21,6 +21,5 @@ int lstr_dup(lstr_t *dest, const lstr_t *src)
   memcpy(dest->i, src->i, src->len + 1);
   dest->len = src->len;
   dest->rsize = src->len + 1;
-  dest->lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
   return (0);
 }

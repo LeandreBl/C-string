@@ -15,7 +15,6 @@ typedef struct lblstr_s {
 	char *i;
 	size_t len;
 	size_t rsize;
-	pthread_mutex_t lock;
 } lstr_t;
 
 int lstr_create(lstr_t *lstr_addr, const char *str) __THROW __nonnull((1));
@@ -39,8 +38,5 @@ int lstr_insert(lstr_t *lstr, size_t pos, const char *str) __THROW __nonnull((1,
 void lstr_clear(lstr_t *lstr) __THROW __nonnull((1));
 void lstr_erase(lstr_t *lstr, size_t pos, size_t len) __THROW __nonnull((1));
 void lstr_swap(lstr_t *l1, lstr_t *l2) __THROW __nonnull((1, 2));
-
-int lstr_lock(lstr_t *lstr) __THROW __nonnull((1));
-int lstr_unlock(lstr_t *lstr) __THROW __nonnull((1));
 
 #endif /* !_LBLSTR_H */
