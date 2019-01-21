@@ -19,8 +19,7 @@ static size_t times_in(const char *in, const char *pattern)
   return (n);
 }
 
-static int need_resize(lstr_t *lstr, const char *replace, size_t len1,
-                       size_t len2)
+static int need_resize(lstr_t *lstr, const char *replace, size_t len1, size_t len2)
 {
   size_t n;
 
