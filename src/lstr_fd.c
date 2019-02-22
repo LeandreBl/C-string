@@ -36,8 +36,8 @@ ssize_t lstr_fd(lstr_t *lstr, int fd, ssize_t count)
     if (lstr_resize(lstr, lstr->len + rd) == -1)
       return (-1);
     memcpy(lstr->i + lstr->len, buffer, rd);
-    lstr->len = size;
+    lstr->len += rd;
   } while (rd > 0);
   lstr->i[lstr->len] = 0;
-  return (lstr->len);
+  return (total);
 }

@@ -399,14 +399,15 @@ Test(lstr_fd, various_tests)
 Test(lstr_file, various_tests)
 {
 	char test[] = "I don't know what to write in it anymore, you sure it's not a trick to pass tests ?";
-	lstr_t str = { 0 };
+	lstr_t str;
 	int fd = open("test_file", O_RDWR | O_CREAT | O_TRUNC, 0666);
 
+  lstr_create(&str, "test");
 	cr_assert(fd != -1);
 	write(fd, test, sizeof(test));
 	close(fd);
 	cr_assert(lstr_file(&str, "test_file", 50) == 50);
-	cr_assert(strncmp(str.i, test, 50) == 0);
+	cr_assert(strncmp(str.i + 4, test, 50) == 0);
 	lstr_destroy(&str);
 	cr_assert(lstr_file(&str, "test_file", 74) == 74);
 	cr_assert(strncmp(str.i, test, 24) == 0);
