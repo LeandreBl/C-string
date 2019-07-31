@@ -13,19 +13,19 @@
 
 int lstr_create(lstr_t *lstr, const char *str)
 {
-  lstr->len = strlen(str);
-  lstr->i = malloc(lstr->len + 1);
-  if (lstr->i == NULL) {
-    lstr_destroy(lstr);
-    return (-1);
-  }
-  memcpy(lstr->i, str, lstr->len + 1);
-  lstr->rsize = lstr->len + 1;
-  return (0);
+	lstr->len = strlen(str);
+	lstr->i = malloc(lstr->len + 1);
+	if (lstr->i == NULL) {
+		lstr_destroy(lstr);
+		return (-1);
+	}
+	memcpy(lstr->i, str, lstr->len + 1);
+	lstr->rsize = lstr->len + 1;
+	return (0);
 }
 
 void lstr_destroy(lstr_t *lstr)
 {
-  free(lstr->i);
-  memset(lstr, 0, sizeof(*lstr));
+	free(lstr->i);
+	memset(lstr, 0, sizeof(*lstr));
 }

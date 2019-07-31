@@ -6,10 +6,10 @@
 */
 
 #ifndef _LBLSTR_H
-# define _LBLSTR_H
+#define _LBLSTR_H
 
-# include <sys/types.h>
-# include <sys/cdefs.h>
+#include <sys/types.h>
+#include <sys/cdefs.h>
 
 typedef struct lblstr_s {
 	char *i;
@@ -20,7 +20,8 @@ typedef struct lblstr_s {
 int lstr_create(lstr_t *lstr_addr, const char *str) __THROW __nonnull((1));
 ssize_t lstr_fd(lstr_t *lstr_addr, int fd, ssize_t count) __THROW __nonnull((1));
 ssize_t lstr_file(lstr_t *lstr_addr, const char *pathname, ssize_t count) __THROW __nonnull((1, 2));
-int lstr_format(lstr_t *lstr, const char *format, ...) __THROW __nonnull((1, 2)) __attribute__ ((__format__ (__printf__, 2, 0)));
+int lstr_format(lstr_t *lstr, const char *format, ...) __THROW __nonnull((1, 2))
+	__attribute__((__format__(__printf__, 2, 0)));
 
 void lstr_destroy(lstr_t *lstr) __THROW __nonnull((1));
 

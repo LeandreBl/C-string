@@ -56,7 +56,9 @@ Test(lstr_append, various_tests)
 	cr_assert(lstr_append(&str, "yoooooooooooooooolooooooooooooo") == 0);
 	cr_assert(str.len == 66);
 	cr_assert(str.rsize > 66);
-	cr_assert(strcmp(str.i, "totosrltektjejterjtlerktlerktmelrktyoooooooooooooooolooooooooooooo") == 0);
+	cr_assert(
+		strcmp(str.i, "totosrltektjejterjtlerktlerktmelrktyoooooooooooooooolooooooooooooo")
+		== 0);
 	lstr_destroy(&str);
 }
 
@@ -121,8 +123,9 @@ Test(lstr_format, various_tests)
 	lstr_t str;
 
 	lstr_create(&str, "oui");
-	cr_assert(lstr_format(&str, "%c%s is a lion %d cm tall, I like %f trains",
-		 ' ', "josephine", 30, 3.14) == 55);
+	cr_assert(lstr_format(&str, "%c%s is a lion %d cm tall, I like %f trains", ' ', "josephine",
+			      30, 3.14)
+		  == 55);
 	cr_assert(str.len == 58);
 	cr_assert(str.rsize > 58);
 	cr_assert(strcmp(str.i, "oui josephine is a lion 30 cm tall, I like 3.140000 trains") == 0);
@@ -377,7 +380,7 @@ Test(lstr_swap, various_tests)
 Test(lstr_fd, various_tests)
 {
 	char test[] = "Hi everyone, this is a simple test, and i'm not going to try any further.";
-	lstr_t str = { 0 };
+	lstr_t str = {0};
 
 	int fd = open("test_fd", O_RDWR | O_CREAT | O_TRUNC, 0666);
 
@@ -398,11 +401,13 @@ Test(lstr_fd, various_tests)
 
 Test(lstr_file, various_tests)
 {
-	char test[] = "I don't know what to write in it anymore, you sure it's not a trick to pass tests ?";
+	char test[] =
+		"I don't know what to write in it anymore, you sure it's not a trick to pass tests "
+		"?";
 	lstr_t str;
 	int fd = open("test_file", O_RDWR | O_CREAT | O_TRUNC, 0666);
 
-  lstr_create(&str, "test");
+	lstr_create(&str, "test");
 	cr_assert(fd != -1);
 	write(fd, test, sizeof(test));
 	close(fd);

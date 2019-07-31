@@ -9,10 +9,10 @@
 
 int lstr_addch(lstr_t *lstr, char c)
 {
-  if (lstr_resize(lstr, lstr->len + 1) == -1)
-    return (-1);
-  lstr->i[lstr->len] = c;
-  ++(lstr->len);
-  lstr->i[lstr->len] = '\0';
-  return (0);
+	if (lstr_resize(lstr, lstr->len + 1) == -1)
+		return (-1);
+	lstr->i[lstr->len] = c;
+	++(lstr->len);
+	lstr->i[lstr->len] = '\0';
+	return (0);
 }
